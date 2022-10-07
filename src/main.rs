@@ -14,6 +14,7 @@ enum SubCommands {
     },
 
     Grep {
+        #[arg(value_name = "KEYWORD")]
         pattern: String,
         #[arg(value_name = "FILE")]
         path: std::path::PathBuf,
