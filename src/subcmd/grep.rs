@@ -36,3 +36,9 @@ pub mod grep {
         handle.write_all(string_builder.as_bytes()).unwrap();
     }
 }
+
+#[test]
+fn test_grep() {
+    let path = std::path::PathBuf::from("src/subcmd/grep.rs");
+    grep::grep_impl("let".to_string(), path);
+}
