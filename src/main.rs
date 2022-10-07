@@ -1,6 +1,10 @@
 #![allow(unused)]
+mod subcmd;
 
 use clap::{Command, FromArgMatches as _, Parser, Subcommand as _};
+use subcmd::grep;
+
+use crate::subcmd::grep::grep::grep_impl;
 
 #[derive(Parser, Debug)]
 enum SubCommands {
@@ -35,11 +39,7 @@ fn main() {
             println!("Test command with list: {}", list);
         }
         SubCommands::Grep { pattern, path } => {
-            println!(
-                "Grep command with pattern: {}, path: {}",
-                pattern,
-                path.display()
-            );
+            grep_impl(pattern, path);
         }
     }
 }
