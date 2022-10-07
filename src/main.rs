@@ -2,9 +2,17 @@
 mod subcmd;
 
 use clap::{Command, FromArgMatches as _, Parser, Subcommand as _};
-use subcmd::grep;
+
+use config::Config;
+use lazy_static::lazy_static;
+use std::error::Error;
+use std::sync::RwLock;
 
 use crate::subcmd::grep::grep::grep_impl;
+
+lazy_static! {
+    static ref SETTINGS: RwLock<Config> = RwLock::new(Config::default());
+}
 
 #[derive(Parser, Debug)]
 enum SubCommands {
